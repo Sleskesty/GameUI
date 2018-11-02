@@ -12,6 +12,7 @@ export default class EditGame extends React.Component {
         super(props);
         this.state = {
             open: false,
+            named:this.props.named
           }
           this.modification= this.modification.bind(this)
     }
@@ -88,7 +89,7 @@ export default class EditGame extends React.Component {
               id="name"
               label="Name"
               onChange={this.inputName}
-              placeholder={this.props.named}
+              defaultValue={this.props.named}
               fullWidth
             />
             <TextField
@@ -96,14 +97,14 @@ export default class EditGame extends React.Component {
               id="name"
               label="Description"
               onChange={this.inputName}
-              placeholder={this.props.describer}
+              defaultValue={this.props.describer}
               fullWidth
             />
             <TextField
               margin="dense"
               id="name"
               label="Category"
-              placeholder={this.props.categorer}
+              defaultValue={this.props.categorer}
               onChange={this.inputCategory}
               fullWidth
             />
@@ -111,7 +112,7 @@ export default class EditGame extends React.Component {
               margin="dense"
               id="name"
               label="Status"
-              placeholder={this.props.stator}
+              defaultValue={this.props.stator}
               onChange={this.inputStatus}
               fullWidth
             />
@@ -119,7 +120,7 @@ export default class EditGame extends React.Component {
               margin="dense"
               id="name"
               label="Price"
-              placeholder={this.props.pricer}
+              defaultValue={this.props.pricer}
               onChange={this.inputPrice}
               fullWidth
             />
@@ -127,7 +128,7 @@ export default class EditGame extends React.Component {
               margin="dense"
               id="name"
               label="Console"
-              placeholder={this.props.consoler}
+              defaultValue={this.props.consoler}
               onChange={this.inputConsole}
               fullWidth
             />
@@ -135,7 +136,7 @@ export default class EditGame extends React.Component {
               margin="dense"
               id="name"
               label="Image"
-              placeholder={this.props.imager}
+              defaultValue={this.props.imager}
               onChange={this.inputImage}
               fullWidth
             />
