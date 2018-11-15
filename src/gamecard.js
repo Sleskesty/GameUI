@@ -64,8 +64,8 @@ function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-          <EditGame refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id} describer={props.GameData.desc} categorer={props.GameData.cat} stator={props.GameData.status} pricer={props.GameData.price} consoler={props.GameData.console} imager={props.GameData.img}/>
-        <DeleteGame refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id}/>
+          {props.stater ? <EditGame refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id} describer={props.GameData.desc} categorer={props.GameData.cat} stator={props.GameData.status} pricer={props.GameData.price} consoler={props.GameData.console} imager={props.GameData.img}/> : null}
+          {props.stater ? <DeleteGame refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id}/> : null}
       </CardActions>
     </Card>
     </div>

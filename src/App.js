@@ -7,6 +7,7 @@ import GameCard from './gamecard'
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import CreateItem from './createItem';
+import Login from './Login'
 
 const styles = theme => ({
   root: {
@@ -27,7 +28,8 @@ class App extends Component {
     this.state = {
       cards: [],
       loaded: false,
-      filter: ""
+      filter: "",
+      isLoggedIn: false,
 
     }
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -46,7 +48,7 @@ class App extends Component {
     this.setState({filterParam: event.target.value})
   }
   async handleSubmit(param="") {
-    const url =`https://apigame-oboomuqnft.now.sh/games/${param}`
+    const url =`https://apigame-lxmqpjuhyx.now.sh/games/${param}`
     await fetch (url)
     .then(async res => {
 
@@ -57,17 +59,38 @@ class App extends Component {
       this.setState({
         cards: body,
         loaded: true,
-        filter: param
+        filter: param,
       })}
     })
     .catch((error) => console.log('OH MY GOD', this.state.cards))
+  }
+  userLogIn = async ({user, password}) => {
+    let URL ='https://apigame-lxmqpjuhyx.now.sh/users/login'
+    const requiredcontent = {
+      method: "POST",
+      headers:{"Content-Type": "application/json; charset=utf-8"},
+      body: JSON.stringify({username:user, password:password})
+    }
+    
+    let request = new Request(URL,requiredcontent)
+    await fetch(request)
+    .then(async res => {
+      
+      if(res.ok) {
+        const response = await res.json()
+        this.setState({
+           isLoggedIn: response.userIsLoggedIn
+       })
+      } else {console.log('here is an error')}
+    })
+    .catch(err => console.log(err))
   }
   render() {
     const { classes } = this.props;
     const { spacing } = this.state;
     return (
       <div>
-        <CreateItem refresh={this.handleInputChange}/>
+        {this.state.isLoggedIn ? <CreateItem refresh={this.handleInputChange}/> : <Login userLog={this.userLogIn}/> }
         <form onSubmit={this.handleInputChange}>
           <TextField type="text" onChange={this.inputChange}/>
           <IconButton type="submit">
@@ -77,7 +100,7 @@ class App extends Component {
         <Grid container className={classes.root} spacing={64}>
         <Grid item xs={11}>
           <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
-        {this.state.loaded ? this.state.cards.map( (v,i) => {return(<GameCard refresh={this.handleInputChange} key={i} GameData={v}/>)} ) : <React.Fragment></React.Fragment>}
+        {this.state.loaded ? this.state.cards.map( (v,i) => {return(<GameCard stater={this.state.isLoggedIn} refresh={this.handleInputChange} key={i} GameData={v}/>)} ) : <React.Fragment></React.Fragment>}
         </Grid>
         </Grid>
         </Grid>
