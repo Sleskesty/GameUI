@@ -96,7 +96,7 @@ export default class EditGame extends React.Component {
               margin="dense"
               id="name"
               label="Description"
-              onChange={this.inputName}
+              onChange={this.inputDescription}
               defaultValue={this.props.describer}
               fullWidth
             />
