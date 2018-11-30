@@ -34,6 +34,7 @@ const styles = theme => ({
 function MediaCard(props) {
   const { classes } = props;
   return (
+  
       <div className={classes.root}>
     <Card className={classes.card}>
       <CardActionArea>
@@ -49,7 +50,7 @@ function MediaCard(props) {
           <Typography component="h4">
           Description: {props.GameData.desc}
           </Typography>
-          <Typography component="p">
+          <Typography component='p'>
            Console: {props.GameData.console}
           </Typography>
           <Typography component="p">

@@ -13,13 +13,13 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#BB4430',
+      main: '#3f50b5',
       dark: '#002884',
       contrastText: '#fff',
     },
     secondary: {
       light: '#2D2D34',
-      main: '#EFE6DD',
+      main: '#BB4430',
       dark: '#ba000d',
       contrastText: '#000',
     },
@@ -48,33 +48,37 @@ class CreateItem extends React.Component {
   inputDescription = (event) => {
     this.setState({desced: event.target.value})
   }
-  inputStatus = (event) => {
-    this.setState({stated: event.target.value})
+  inputgpu = (event) => {
+    this.setState({gpu: event.target.value})
   }
-  inputPrice = (event) => {
-    this.setState({priced: event.target.value})
+  inputMemory = (event) => {
+    this.setState({memory: event.target.value})
   }
   inputImage = (event) => {
     this.setState({imaged: event.target.value})
   }
-  inputCategory = (event) => {
-    this.setState({cated: event.target.value})
+  inputcpu = (event) => {
+    this.setState({cpu: event.target.value})
   }
-  inputConsole = (event) => {
-    this.setState({console: event.target.value})
+  inputInput = (event) => {
+    this.setState({input: event.target.value})
+  }
+  inputAV = (event) => {
+    this.setState({av: event.target.value})
   }
   async creation(event) {
-    const url =`https://apigame-lxmqpjuhyx.now.sh/games/`
+    const url =`https://apigame-hwqsxqwkld.now.sh/consoles/`
     const required = {
         method: "POST",
         headers: {"Content-Type": "application/json; charset=utf-8"},
         body: JSON.stringify({name: this.state.named, 
             desc: this.state.desced, 
-            price: this.state.priced, 
-            cat: this.state.cated, 
-            status: this.state.stated, 
+            input: this.state.input, 
+            cpu: this.state.cpu, 
+            gpu: this.state.gpu, 
             img: this.state.imaged,
-            console: this.state.console
+            memory: this.state.memory,
+            av: this.state.av
           })
     }
     let theRequest = new Request (url, required)
@@ -84,11 +88,12 @@ class CreateItem extends React.Component {
     this.setState({
         named: '',
         desced:'',
-        priced:'',
-        cated:'',
-        stated:'',
+        input:'',
+        cpu:'',
+        gpu:'',
+        memory:'',
         img:'',
-        console:'',
+        av:'',
         open: false,
     })
     this.props.refresh(event)
@@ -97,7 +102,7 @@ class CreateItem extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <Button color='primary' onClick={this.handleClickOpen}>Add Game</Button>
+        <Button color='secondary' onClick={this.handleClickOpen}>Add Console</Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -106,7 +111,7 @@ class CreateItem extends React.Component {
           <DialogTitle id="form-dialog-title">Create Game</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              To Add a game please fill out all text fields
+              To Add a console please fill out all text fields
             </DialogContentText>
             <TextField
               autoFocus
@@ -128,35 +133,42 @@ class CreateItem extends React.Component {
             <TextField
               margin="dense"
               id="name"
-              label="Category"
+              label="CPU"
               fullWidth
               required
-              onChange={this.inputCategory}
+              onChange={this.inputcpu}
             />
             <TextField
               margin="dense"
               id="name"
-              label="Status"
+              label="GPU"
               fullWidth
               required
-              onChange={this.inputStatus}
+              onChange={this.inputgpu}
             />
             <TextField
               margin="dense"
               id="name"
-              label="Price"
+              label="AV output"
               fullWidth
               required
-              type="number"
-              onChange={this.inputPrice}
+              onChange={this.inputAV}
             />
             <TextField
               margin="dense"
               id="name"
-              label="Console"
+              label="Input and Output"
               fullWidth
               required
-              onChange={this.inputConsole}
+              onChange={this.inputInput}
+            />
+            <TextField
+              margin="dense"
+              id="name"
+              label="Memory"
+              fullWidth
+              required
+              onChange={this.inputMemory}
             />
             <TextField
               margin="dense"

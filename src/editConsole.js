@@ -17,18 +17,19 @@ export default class EditGame extends React.Component {
           this.modification= this.modification.bind(this)
     }
     async modification(event) {
-        const url = `https://apigame-lxmqpjuhyx.now.sh/games/${this.props.namer}`
+        const url = `https://apigame-tfqicysjxw.now.sh/consoles/${this.props.namer}`
         const required = {
             method: "PUT",
             headers: {"Content-Type": "application/json; charset=utf-8"},
             body: JSON.stringify({
                 name: this.state.named,
-                cat: this.state.cated,
+                av: this.state.av,
                 img: this.state.imged,
                 desc: this.state.desced,
-                console: this.state.consoled,
-                status: this.state.statused,
-                price: this.state.priced,
+                input: this.state.input,
+                cpu: this.state.cpuer,
+                gpu: this.state.gpu,
+                memory:this.state.memory
             })
         }
         let theRequest = new Request(url, required)
@@ -53,20 +54,22 @@ export default class EditGame extends React.Component {
   inputDescription = (event) => {
     this.setState({desced: event.target.value})
   }
-  inputStatus = (event) => {
-    this.setState({statused: event.target.value})
+  inputCPU = (event) => {
+    
+    this.setState({cpuer: event.target.value})
+    console.log(this.state.cpuer)
   }
-  inputPrice = (event) => {
-    this.setState({priced: event.target.value})
+  inputGPU = (event) => {
+    this.setState({gpu: event.target.value})
   }
   inputImage = (event) => {
     this.setState({imged: event.target.value})
   }
-  inputCategory = (event) => {
-    this.setState({cated: event.target.value})
+  inputAV = (event) => {
+    this.setState({av: event.target.value})
   }
-  inputConsole = (event) => {
-    this.setState({consoled: event.target.value})
+  inputInput = (event) => {
+    this.setState({input: event.target.value})
   }
 
   render() {
@@ -103,36 +106,43 @@ export default class EditGame extends React.Component {
             <TextField
               margin="dense"
               id="name"
-              label="Category"
-              defaultValue={this.props.categorer}
-              onChange={this.inputCategory}
+              label="CPU"
+              defaultValue={this.props.cpu}
+              onChange={this.inputCPU}
               fullWidth
             />
             <TextField
               margin="dense"
               id="name"
-              label="Status"
-              defaultValue={this.props.stator}
-              onChange={this.inputStatus}
+              label="GPU"
+              defaultValue={this.props.gpu}
+              onChange={this.inputGPU}
               fullWidth
             />
             <TextField
               margin="dense"
               id="name"
-              label="Price"
-              type='number'
-              defaultValue={this.props.pricer}
-              onChange={this.inputPrice}
+              label="Memory"
+              defaultValue={this.props.memory}
+              onChange={this.inputMemory}
               fullWidth
             />
             <TextField
               margin="dense"
               id="name"
-              label="Console"
-              defaultValue={this.props.consoler}
-              onChange={this.inputConsole}
+              label="Input/Output"
+              defaultValue={this.props.input}
+              onChange={this.inputInput}
               fullWidth
             />
+            <TextField
+            margin="dense"
+            id="name"
+            label="AV Output"
+            defaultValue={this.props.av}
+            onChange={this.inputAV}
+            fullWidth
+          />
             <TextField
               margin="dense"
               id="name"

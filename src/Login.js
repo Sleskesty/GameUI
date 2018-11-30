@@ -5,14 +5,43 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#2D2D34',
+      main: '#EFE6DD',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 export default class FormDialog extends React.Component {
   state = {
     open: false,
       password:'',
       username:'',
+      logger: false
   };
+  handleSnacks = () => {
+    this.setState({ logger: true });
+  };
+  handleClosedSnacks = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
+    this.setState({ open: false });
+  };
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -29,8 +58,8 @@ export default class FormDialog extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Button onClick={this.handleClickOpen}>Log in</Button>
+      <MuiThemeProvider theme={theme}>
+        <Button onClick={this.handleClickOpen} color='secondary'>Log in</Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -64,7 +93,7 @@ export default class FormDialog extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
