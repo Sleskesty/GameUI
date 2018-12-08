@@ -22,21 +22,10 @@ const styles = theme => ({
         loaded:false
     }
     componentWillMount() {
-        this.handlePuzzle()
-        this.handleParty()
-        this.handleAction()
-        this.handleRPG()
-        this.handleBuilder()
-        this.handlePlatforming()
-        this.handleParty()
-        this.handleStrategy()
-        this.handleRacing()
         this.handlePS4()
-        this.handlePC()
-        this.handleSwitch()
       }
       async handlePS4(param="") {
-        let url =`https://apigame-vwhgpbpsxw.now.sh/games/PS4`
+        let url =`https://apigame-vwhgpbpsxw.now.sh/games/`
         await fetch (url)
         .then(async res => {
     
@@ -45,10 +34,22 @@ const styles = theme => ({
           if( res.ok ) {
             const body = await res.json()
           this.setState({
-            ps4: body.length,
+            ps4: body.filter(ps4 => ps4.console === 'PS4').length,
+            pc: body.filter(pc => pc.console === 'PC').length,
+            switch: body.filter(switcher => switcher.console === 'Switch').length,
+            action: body.filter(action => action.cat.includes('Action')).length,
+            rpg: body.filter(rpg => rpg.cat.includes('RPG')).length,
+            puzzle: body.filter(puzzle => puzzle.cat.includes('Puzzle')).length,
+            strategy: body.filter(strategy => strategy.cat.includes('Strategy')).length,
+            party: body.filter(party => party.cat.includes('Party')).length,
+            builder: body.filter(builder => builder.cat.includes('Builder')).length,
+            racing: body.filter(racing => racing.cat.includes('Racing')).length,
+            platform: body.filter(platform => platform.cat.includes('Platform')).length,
+            loaded: true
           })
         }
         })
+    
         .catch((error) => console.log('OH MY GOD', this.state.cards))
          url =`https://apigame-vwhgpbpsxw.now.sh/games/PC`
         await fetch (url)
@@ -60,160 +61,6 @@ const styles = theme => ({
             const body = await res.json()
           this.setState({
             pc: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }
-      async handleSwitch(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/switch`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            switch: body.length,
-            loaded: true
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }
-      async handlePC(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/PC`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            pc: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handleAction(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/action`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            action: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handleRPG(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/rpg`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            rpg: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handleStrategy(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/strategy`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            strategy: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handlePlatforming(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/Platforming`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            platform: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handleRacing(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/racing`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            racing: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handleBuilder(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/builder`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            builder: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }async handleParty(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/Party`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            party: body.length,
-          })
-        }
-        })
-        .catch((error) => console.log('OH MY GOD', this.state.cards))
-      }
-    async handlePuzzle(param="") {
-        const url =`https://apigame-vwhgpbpsxw.now.sh/games/Puzzle`
-        await fetch (url)
-        .then(async res => {
-    
-          
-          //console.log('error but hit here')
-          if( res.ok ) {
-            const body = await res.json()
-          this.setState({
-            puzzle: body.length,
           })
         }
         })

@@ -80,6 +80,7 @@ export default class FormDialog extends React.Component {
               margin="dense"
               id="name"
               label="Password"
+              type="password"
               onChange={this.inputPassword}
               fullWidth
             />

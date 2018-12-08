@@ -8,7 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import DeleteGame from './deleteGame';
-import EditGame from './editGame'
+import EditGame from './editGame';
+import CommentSender from './CommentSender'
 
 const styles = theme => ({
   card: {
@@ -65,8 +66,9 @@ function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <CommentSender refresh={props.refresh}/>
           {props.stater ? <EditGame refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id} describer={props.GameData.desc} categorer={props.GameData.cat} stator={props.GameData.status} pricer={props.GameData.price} consoler={props.GameData.console} imager={props.GameData.img}/> : null}
-          {props.stater ? <DeleteGame refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id}/> : null}
+          {props.stater ? <DeleteGame section={'games'} refresh={props.refresh} named={props.GameData.name} namer={props.GameData._id}/> : null}
       </CardActions>
     </Card>
     </div>

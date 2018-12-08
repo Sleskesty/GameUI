@@ -9,6 +9,8 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CommentHandler from './CommentHandler';
+import CommentSender from './CommentSender'
 
 const theme = createMuiTheme({
   palette: {
@@ -112,6 +114,7 @@ class App extends Component {
   }
   componentWillMount() {
     this.handleSubmit()
+    this.handleComments()
   }
   handleInputChange(event) {
     event.preventDefault()
@@ -131,14 +134,32 @@ class App extends Component {
       //console.log('error but hit here')
       if( res.ok ) {
         const body = await res.json()
+        console.log(body)
       this.setState({
         cards: body,
-        loaded: true,
         filter: param,
       })
     }
     })
     .catch((error) => console.log('OH MY GOD', this.state.cards))
+  }
+   handleComments = async (param="") => {
+    const url =`https://apigame-zwbatekpui.now.sh/comments/`
+    await fetch (url)
+    .then(async res => {
+
+      
+      //console.log('error but hit here')
+      if( res.ok ) {
+        const body = await res.json()
+        console.log(body)
+      this.setState({
+        comments: body,
+        loaded: true,
+      })
+    }
+    })
+    .catch((error) => console.log('OH MY GOD'))
   }
   userLogIn = async ({user, password}) => {
     let URL ='https://apigame-qyfvksbfik.now.sh/users/login'
@@ -166,7 +187,8 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
-      {this.props.logger ? <CreateGame refresh={this.handleInputChange}/> : null}
+      <CommentSender refresh={this.handleComments}/>
+      {this.props.logger ?<CreateGame refresh={this.handleInputChange}/>: null}
       <form onSubmit={this.handleInputChange}>
       <TextField
           id="standard-name"
@@ -174,7 +196,7 @@ class App extends Component {
           onChange={this.inputChange}
         />
       </form>
-        <Grid container className={classes.root} spacing={40}>
+        <Grid container className={classes.root} spacing={4}>
         <Grid item xs={11}>
           <Grid container className={classes.demo}>
         {this.state.loaded ? this.state.cards.map( (v,i) => {return(<GameCard stater={this.props.logger} refresh={this.handleInputChange} key={i} GameData={v}/>)} ) : 
@@ -188,6 +210,7 @@ class App extends Component {
         </Grid>
         </Grid>
         </Grid>
+        {this.state.loaded ? this.state.comments.map( (v,i) => {return (<CommentHandler stater={this.props.logger} refresh={this.handleComments} key={i} commentData={v}/>)}): null}
         </MuiThemeProvider>
     );
   }
