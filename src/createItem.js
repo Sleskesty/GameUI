@@ -64,7 +64,7 @@ class CreateItem extends React.Component {
     this.setState({console: event.target.value})
   }
   async creation(event) {
-    const url =`https://apigame-lxmqpjuhyx.now.sh/games/`
+    const url =`https://apigame-fsairvnhfw.now.sh/games/`
     const required = {
         method: "POST",
         headers: {"Content-Type": "application/json; charset=utf-8"},

@@ -46,7 +46,7 @@ export default class FormDialog extends React.Component {
         this.setState({comment: event.target.value})
     }
     creation =  async (event) => {
-        const url =`https://apigame-zwbatekpui.now.sh/comments/`
+        const url =`https://apigame-fsairvnhfw.now.sh/comments/`
         const required = {
             method: "POST",
             headers: {"Content-Type": "application/json; charset=utf-8"},

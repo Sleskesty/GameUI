@@ -126,7 +126,7 @@ class App extends Component {
     this.setState({filterParam: event.target.value})
   }
   async handleSubmit(param="") {
-    const url =`https://apigame-vwhgpbpsxw.now.sh/games/${param}`
+    const url =`https://apigame-fsairvnhfw.now.sh/games/${param}`
     await fetch (url)
     .then(async res => {
 
@@ -138,6 +138,7 @@ class App extends Component {
       this.setState({
         cards: body,
         filter: param,
+        loaded: true,
       })
     }
     })
@@ -155,33 +156,11 @@ class App extends Component {
         console.log(body)
       this.setState({
         comments: body,
-        loaded: true,
+        
       })
     }
     })
     .catch((error) => console.log('OH MY GOD'))
-  }
-  userLogIn = async ({user, password}) => {
-    let URL ='https://apigame-qyfvksbfik.now.sh/users/login'
-    const requiredcontent = {
-      method: "POST",
-      headers:{"Content-Type": "application/json; charset=utf-8"},
-      body: JSON.stringify({username:user, password:password})
-    }
-    
-    let request = new Request(URL,requiredcontent)
-    await fetch(request)
-    .then(async res => {
-      
-      if(res.ok) {
-        const response = await res.json()
-        this.setState({
-           isLoggedIn: response.userIsLoggedIn,
-           success: true
-       })
-      } else {console.log('here is an error')}
-    })
-    .catch(err => console.log(err))
   }
   render() {
     const { classes } = this.props;

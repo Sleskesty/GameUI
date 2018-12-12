@@ -17,7 +17,7 @@ export default class EditGame extends React.Component {
           this.modification= this.modification.bind(this)
     }
     async modification(event) {
-        const url = `https://apigame-tfqicysjxw.now.sh/consoles/${this.props.namer}`
+        const url = `https://apigame-fsairvnhfw.now.sh/consoles/${this.props.namer}`
         const required = {
             method: "PUT",
             headers: {"Content-Type": "application/json; charset=utf-8"},

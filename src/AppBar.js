@@ -108,41 +108,9 @@ class App extends Component {
       isLoggedIn: false,
 
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleInputChange= this.handleInputChange.bind(this)
-  }
-  componentWillMount() {
-    this.handleSubmit()
-  }
-  handleInputChange(event) {
-    event.preventDefault()
-    console.log("in handleInputChange")
-    this.handleSubmit(this.state.filterParam)
-    
-  }
-  inputChange = (event) => {
-    this.setState({filterParam: event.target.value})
-  }
-  async handleSubmit(param="") {
-    const url =`https://apigame-lxmqpjuhyx.now.sh/games/${param}`
-    await fetch (url)
-    .then(async res => {
-
-      
-      //console.log('error but hit here')
-      if( res.ok ) {
-        const body = await res.json()
-      this.setState({
-        cards: body,
-        loaded: true,
-        filter: param,
-      })
-    }
-    })
-    .catch((error) => console.log('OH MY GOD', this.state.cards))
   }
   userLogIn = async ({user, password}) => {
-    let URL ='https://apigame-zwbatekpui.now.sh//users/login'
+    let URL ='https://apigame-fsairvnhfw.now.sh/users/login'
     const requiredcontent = {
       method: "POST",
       headers:{"Content-Type": "application/json; charset=utf-8"},

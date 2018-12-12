@@ -99,7 +99,7 @@ const styles = theme => ({
   },
 });
 
-class App extends Component {
+class ConsoleHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -167,4 +167,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(ConsoleHandler);

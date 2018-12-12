@@ -19,7 +19,7 @@ class DeleteGame extends React.Component {
           this.deletion= this.deletion.bind(this)
     }
   async deletion(event) {
-    const url =`https://apigame-zwbatekpui.now.sh/${this.props.section}/${this.props.namer}`
+    const url =`https://apigame-fsairvnhfw.now.sh/${this.props.section}/${this.props.namer}`
     await fetch(url, {method:'delete'}).catch();
     this.setState({
         open: false,
