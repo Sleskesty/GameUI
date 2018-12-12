@@ -90,7 +90,6 @@ export default class FormDialog extends React.Component {
             />
             <TextField
             onChange={this.inputComment}
-              autoFocus
               multiline
               margin="dense"
               id="name"
