@@ -118,7 +118,6 @@ class App extends Component {
   }
   handleInputChange(event) {
     event.preventDefault()
-    console.log("in handleInputChange")
     this.handleSubmit(this.state.filterParam)
     
   }
@@ -131,10 +130,8 @@ class App extends Component {
     .then(async res => {
 
       
-      //console.log('error but hit here')
       if( res.ok ) {
         const body = await res.json()
-        console.log(body)
       this.setState({
         cards: body,
         filter: param,
@@ -150,10 +147,8 @@ class App extends Component {
     .then(async res => {
 
       
-      //console.log('error but hit here')
       if( res.ok ) {
         const body = await res.json()
-        console.log(body)
       this.setState({
         comments: body,
         
@@ -175,7 +170,7 @@ class App extends Component {
           onChange={this.inputChange}
         />
       </form>
-        <Grid container className={classes.root} spacing={4}>
+        <Grid container className={classes.root} spacing={8}>
         <Grid item xs={11}>
           <Grid container className={classes.demo}>
         {this.state.loaded ? this.state.cards.map( (v,i) => {return(<GameCard stater={this.props.logger} refresh={this.handleInputChange} key={i} GameData={v}/>)} ) : 

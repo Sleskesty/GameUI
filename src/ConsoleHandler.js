@@ -117,7 +117,6 @@ class ConsoleHandler extends Component {
   }
   handleInputChange(event) {
     event.preventDefault()
-    console.log("in handleInputChange")
     this.handleSubmit(this.state.filterParam)
     
   }
@@ -130,7 +129,6 @@ class ConsoleHandler extends Component {
     .then(async res => {
 
       
-      //console.log('error but hit here')
       if( res.ok ) {
         const body = await res.json()
       this.setState({

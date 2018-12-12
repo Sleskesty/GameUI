@@ -78,7 +78,6 @@ export default class FormDialog extends React.Component {
             />
             <TextField
               margin="dense"
-              id="name"
               label="Password"
               type="password"
               onChange={this.inputPassword}

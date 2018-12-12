@@ -54,10 +54,8 @@ export default class EditGame extends React.Component {
   inputDescription = (event) => {
     this.setState({desced: event.target.value})
   }
-  inputCPU = (event) => {
-    
+  inputCPU = (event) => { 
     this.setState({cpuer: event.target.value})
-    console.log(this.state.cpuer)
   }
   inputGPU = (event) => {
     this.setState({gpu: event.target.value})
